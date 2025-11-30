@@ -1,0 +1,76 @@
+spawn(function()
+    if getgenv().bypassercheck ~= true then
+        spawn(function()
+            game:service("Players").LocalPlayer:Kick("Why????")
+        end)
+        spawn(function()
+            wait(5)
+            while true do
+            end
+        end)
+    else
+        spawn(function()
+            getgenv().EggNameRenderer = false
+            wait()
+            getgenv().EggNameRenderer = true
+            while EggNameRenderer do
+                wait()
+                pcall(function()
+                    local v14, v15 = pcall(function()
+                        local v1 = game:GetService("Players")
+                        local v2 = v1.LocalPlayer or v1:GetPropertyChangedSignal("LocalPlayer"):Wait()
+                        while not v2:FindFirstChild("PlayerGui") do
+                            wait(0.5)
+                        end
+                        local vu3 = v2.PlayerGui:WaitForChild("MainGui", 10):WaitForChild("OtherFrames", 10):WaitForChild("PetShop", 10):WaitForChild("Frame", 10):WaitForChild("ScrollingFrame", 10)
+                        if vu3 then
+                            pcall(function()
+                                local v4 = vu3
+                                local v5, v6, v7 = ipairs(v4:GetChildren())
+                                while true do
+                                    local v8
+                                    v7, v8 = v5(v6, v7)
+                                    if v7 == nil then
+                                        break
+                                    end
+                                    if v8:IsA("Frame") and tonumber(v8.Name) then
+                                        local v9 = v8:FindFirstChild("Button")
+                                        if v9 then
+                                            local v10 = (tonumber(v8.Name) - 1) % 12 + 1
+                                            local v11 = v9:FindFirstChild("EggNumberLabel")
+                                            if v11 then
+                                                v11:Destroy()
+                                            end
+                                            local v12 = Instance.new("TextLabel")
+                                            v12.Name = "EggNumberLabel"
+                                            v12.Text = tostring(v10)
+                                            v12.Size = UDim2.new(0.4, 0, 0.3, 0)
+                                            v12.Position = UDim2.new(1, - 5, 0, 5)
+                                            v12.AnchorPoint = Vector2.new(1, 0)
+                                            v12.TextColor3 = Color3.new(1, 1, 1)
+                                            v12.BackgroundTransparency = 1
+                                            v12.TextSize = 18
+                                            v12.Font = Enum.Font.GothamBold
+                                            v12.ZIndex = 10
+                                            local v13 = Instance.new("UIStroke")
+                                            v13.Thickness = 1.2
+                                            v13.Color = Color3.new(0, 0, 0)
+                                            v13.Parent = v12
+                                            v12.Parent = v9
+                                        end
+                                    end
+                                end
+                            end)
+                        else
+                            warn("PetShop GUI not found!")
+                        end
+                    end)
+                    if not v14 then
+                        warn("Egg Label System Failed:", v15)
+                    end
+                end)
+                wait(0.5)
+            end
+        end)
+    end
+end)
